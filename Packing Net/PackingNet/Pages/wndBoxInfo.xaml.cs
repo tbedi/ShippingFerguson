@@ -36,6 +36,15 @@ namespace PackingNet.Pages
         {
             try
             {
+                cstPalletInfo _boxPackage = new cstPalletInfo();
+                _boxPackage.palletCreatedTime = DateTime.UtcNow;
+                List<cstPalletInfo> lsBox = new List<cstPalletInfo>();
+                lsBox.Add(_boxPackage);
+                Global.PalletID = Global.controller.SetPallet(lsBox);
+
+                btnAddNewPallet.Visibility = Visibility.Hidden;
+
+
                 fillGrid(Global.ShippingNumber);
                 txtBoxNumberScanned.Focus();
                 txtWH.Text = CheckWH(Global.ShippingNumber).Trim();
@@ -92,20 +101,29 @@ namespace PackingNet.Pages
                
                 if (txtBoxNumberScanned.Text.Trim() != "" && txtBoxNumberScanned.Text.Trim() != null && e.Key == Key.Enter)
                 { 
-                    Global.counter = 0;
-                    List<cstPackageDetails> _packingDetails = Global.controller.GetPackingDetailTbl(txtBoxNumberScanned.Text);
+                    //Global.counter = 0;
+                    //List<cstPackageDetails> _packingDetails = Global.controller.GetPackingDetailTbl(txtBoxNumberScanned.Text);
 
-                    foreach (var item in _packingDetails)
-                    {
-                        Global.BoxNumberScanned = txtBoxNumberScanned.Text;
-                        wndWayfair wayFairlabel = new wndWayfair();
-                        wayFairlabel.ShowDialog();
-                        Global.counter = Global.counter + 1;
-                    }
+                    //foreach (var item in _packingDetails)
+                    //{
+                    //    Global.BoxNumberScanned = txtBoxNumberScanned.Text;
+                    //    wndWayfair wayFairlabel = new wndWayfair();
+                    //    wayFairlabel.ShowDialog();
+                    //    Global.counter = Global.counter + 1;
+                    //}
 
 
-                    SavePrinted(txtBoxNumberScanned.Text);
+                    //SavePrinted(txtBoxNumberScanned.Text);
 
+                    btnAddNewPallet.Visibility = Visibility.Visible;
+
+                    cstPalletDetails _palletDetail = new cstPalletDetails();
+                    _palletDetail.PalletID = Global.PalletID;
+                    _palletDetail.BoxNumber = txtBoxNumberScanned.Text;
+                    _palletDetail.ShipmentNumber = Global.ShippingNumber;
+                    List<cstPalletDetails> lsBox = new List<cstPalletDetails>();
+                    lsBox.Add(_palletDetail);
+                    Global.PalletDetailID = Global.controller.SetPalletDetails(lsBox);
 
 
                     this.Dispatcher.Invoke(new Action(() =>

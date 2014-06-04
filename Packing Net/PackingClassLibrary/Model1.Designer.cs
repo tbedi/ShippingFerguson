@@ -35,6 +35,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("x3v6Model1", "FK_Transaction_Reasons", "Reason", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PackingClassLibrary.Reason), "SKUReason", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.SKUReason), true)]
 [assembly: EdmRelationshipAttribute("x3v6Model1", "FK_ReturnImages_ReturnDetail", "ReturnDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PackingClassLibrary.ReturnDetail), "ReturnImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.ReturnImage), true)]
 [assembly: EdmRelationshipAttribute("x3v6Model1", "FK_Transaction_ReturnDetail", "ReturnDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PackingClassLibrary.ReturnDetail), "SKUReason", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.SKUReason), true)]
+[assembly: EdmRelationshipAttribute("x3v6Model1", "FK_PalletDetail_PalletDetail", "PalletInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PackingClassLibrary.PalletInfo), "PalletDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.PalletDetail), true)]
+[assembly: EdmRelationshipAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_Return", "Return", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PackingClassLibrary.Return), "ReturnedSKU_Reason_Points", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.ReturnedSKU_Reason_Points), true)]
+[assembly: EdmRelationshipAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PackingClassLibrary.ReturnDetail), "ReturnedSKU_Reason_Points", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PackingClassLibrary.ReturnedSKU_Reason_Points), true)]
 
 #endregion
 
@@ -565,6 +568,54 @@ namespace PackingClassLibrary
             }
         }
         private ObjectSet<Shipping_Box_Details_Data> _Shipping_Box_Details_Data;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PalletDetail> PalletDetails
+        {
+            get
+            {
+                if ((_PalletDetails == null))
+                {
+                    _PalletDetails = base.CreateObjectSet<PalletDetail>("PalletDetails");
+                }
+                return _PalletDetails;
+            }
+        }
+        private ObjectSet<PalletDetail> _PalletDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PalletInfo> PalletInfoes
+        {
+            get
+            {
+                if ((_PalletInfoes == null))
+                {
+                    _PalletInfoes = base.CreateObjectSet<PalletInfo>("PalletInfoes");
+                }
+                return _PalletInfoes;
+            }
+        }
+        private ObjectSet<PalletInfo> _PalletInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ReturnedSKU_Reason_Points> ReturnedSKU_Reason_Points
+        {
+            get
+            {
+                if ((_ReturnedSKU_Reason_Points == null))
+                {
+                    _ReturnedSKU_Reason_Points = base.CreateObjectSet<ReturnedSKU_Reason_Points>("ReturnedSKU_Reason_Points");
+                }
+                return _ReturnedSKU_Reason_Points;
+            }
+        }
+        private ObjectSet<ReturnedSKU_Reason_Points> _ReturnedSKU_Reason_Points;
 
         #endregion
 
@@ -808,6 +859,30 @@ namespace PackingClassLibrary
         public void AddToShipping_Box_Details_Data(Shipping_Box_Details_Data shipping_Box_Details_Data)
         {
             base.AddObject("Shipping_Box_Details_Data", shipping_Box_Details_Data);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PalletDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPalletDetails(PalletDetail palletDetail)
+        {
+            base.AddObject("PalletDetails", palletDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PalletInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPalletInfoes(PalletInfo palletInfo)
+        {
+            base.AddObject("PalletInfoes", palletInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ReturnedSKU_Reason_Points EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToReturnedSKU_Reason_Points(ReturnedSKU_Reason_Points returnedSKU_Reason_Points)
+        {
+            base.AddObject("ReturnedSKU_Reason_Points", returnedSKU_Reason_Points);
         }
 
         #endregion
@@ -1993,6 +2068,7 @@ namespace PackingClassLibrary
         /// Create a new Get_Shipping_Data object.
         /// </summary>
         /// <param name="shipmentID">Initial value of the ShipmentID property.</param>
+        /// <param name="sKU">Initial value of the SKU property.</param>
         /// <param name="productName">Initial value of the ProductName property.</param>
         /// <param name="itemWeight">Initial value of the ItemWeight property.</param>
         /// <param name="unitOfMeasure">Initial value of the UnitOfMeasure property.</param>
@@ -2002,10 +2078,11 @@ namespace PackingClassLibrary
         /// <param name="tCLCOD_0">Initial value of the TCLCOD_0 property.</param>
         /// <param name="validationFLG">Initial value of the ValidationFLG property.</param>
         /// <param name="allocationLocation">Initial value of the AllocationLocation property.</param>
-        public static Get_Shipping_Data CreateGet_Shipping_Data(global::System.String shipmentID, global::System.String productName, global::System.Decimal itemWeight, global::System.String unitOfMeasure, global::System.String uPCCode, global::System.String countryOfOrigin, global::System.Decimal mAP_Price, global::System.String tCLCOD_0, global::System.Byte validationFLG, global::System.String allocationLocation)
+        public static Get_Shipping_Data CreateGet_Shipping_Data(global::System.String shipmentID, global::System.String sKU, global::System.String productName, global::System.Decimal itemWeight, global::System.String unitOfMeasure, global::System.String uPCCode, global::System.String countryOfOrigin, global::System.Decimal mAP_Price, global::System.String tCLCOD_0, global::System.Byte validationFLG, global::System.String allocationLocation)
         {
             Get_Shipping_Data get_Shipping_Data = new Get_Shipping_Data();
             get_Shipping_Data.ShipmentID = shipmentID;
+            get_Shipping_Data.SKU = sKU;
             get_Shipping_Data.ProductName = productName;
             get_Shipping_Data.ItemWeight = itemWeight;
             get_Shipping_Data.UnitOfMeasure = unitOfMeasure;
@@ -2076,7 +2153,7 @@ namespace PackingClassLibrary
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String SKU
         {
@@ -2088,7 +2165,7 @@ namespace PackingClassLibrary
             {
                 OnSKUChanging(value);
                 ReportPropertyChanging("SKU");
-                _SKU = StructuralObject.SetValidValue(value, true);
+                _SKU = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("SKU");
                 OnSKUChanged();
             }
@@ -6209,6 +6286,478 @@ namespace PackingClassLibrary
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="x3v6Model1", Name="PalletDetail")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PalletDetail : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PalletDetail object.
+        /// </summary>
+        /// <param name="palletDetailID">Initial value of the PalletDetailID property.</param>
+        public static PalletDetail CreatePalletDetail(global::System.Guid palletDetailID)
+        {
+            PalletDetail palletDetail = new PalletDetail();
+            palletDetail.PalletDetailID = palletDetailID;
+            return palletDetail;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid PalletDetailID
+        {
+            get
+            {
+                return _PalletDetailID;
+            }
+            set
+            {
+                if (_PalletDetailID != value)
+                {
+                    OnPalletDetailIDChanging(value);
+                    ReportPropertyChanging("PalletDetailID");
+                    _PalletDetailID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PalletDetailID");
+                    OnPalletDetailIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _PalletDetailID;
+        partial void OnPalletDetailIDChanging(global::System.Guid value);
+        partial void OnPalletDetailIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> PalletID
+        {
+            get
+            {
+                return _PalletID;
+            }
+            set
+            {
+                OnPalletIDChanging(value);
+                ReportPropertyChanging("PalletID");
+                _PalletID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PalletID");
+                OnPalletIDChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _PalletID;
+        partial void OnPalletIDChanging(Nullable<global::System.Guid> value);
+        partial void OnPalletIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BoxNumber
+        {
+            get
+            {
+                return _BoxNumber;
+            }
+            set
+            {
+                OnBoxNumberChanging(value);
+                ReportPropertyChanging("BoxNumber");
+                _BoxNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BoxNumber");
+                OnBoxNumberChanged();
+            }
+        }
+        private global::System.String _BoxNumber;
+        partial void OnBoxNumberChanging(global::System.String value);
+        partial void OnBoxNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ShipmentNumber
+        {
+            get
+            {
+                return _ShipmentNumber;
+            }
+            set
+            {
+                OnShipmentNumberChanging(value);
+                ReportPropertyChanging("ShipmentNumber");
+                _ShipmentNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ShipmentNumber");
+                OnShipmentNumberChanged();
+            }
+        }
+        private global::System.String _ShipmentNumber;
+        partial void OnShipmentNumberChanging(global::System.String value);
+        partial void OnShipmentNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CartonNumber
+        {
+            get
+            {
+                return _CartonNumber;
+            }
+            set
+            {
+                OnCartonNumberChanging(value);
+                ReportPropertyChanging("CartonNumber");
+                _CartonNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CartonNumber");
+                OnCartonNumberChanged();
+            }
+        }
+        private global::System.String _CartonNumber;
+        partial void OnCartonNumberChanging(global::System.String value);
+        partial void OnCartonNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PrintStatus
+        {
+            get
+            {
+                return _PrintStatus;
+            }
+            set
+            {
+                OnPrintStatusChanging(value);
+                ReportPropertyChanging("PrintStatus");
+                _PrintStatus = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrintStatus");
+                OnPrintStatusChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PrintStatus;
+        partial void OnPrintStatusChanging(Nullable<global::System.Int32> value);
+        partial void OnPrintStatusChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_PalletDetail_PalletDetail", "PalletInfo")]
+        public PalletInfo PalletInfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PalletInfo>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PalletInfo>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PalletInfo> PalletInfoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PalletInfo>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PalletInfo>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletInfo", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="x3v6Model1", Name="PalletInfo")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PalletInfo : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PalletInfo object.
+        /// </summary>
+        /// <param name="palletID">Initial value of the PalletID property.</param>
+        /// <param name="rowID">Initial value of the RowID property.</param>
+        public static PalletInfo CreatePalletInfo(global::System.Guid palletID, global::System.Int32 rowID)
+        {
+            PalletInfo palletInfo = new PalletInfo();
+            palletInfo.PalletID = palletID;
+            palletInfo.RowID = rowID;
+            return palletInfo;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid PalletID
+        {
+            get
+            {
+                return _PalletID;
+            }
+            set
+            {
+                if (_PalletID != value)
+                {
+                    OnPalletIDChanging(value);
+                    ReportPropertyChanging("PalletID");
+                    _PalletID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PalletID");
+                    OnPalletIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _PalletID;
+        partial void OnPalletIDChanging(global::System.Guid value);
+        partial void OnPalletIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PalletType
+        {
+            get
+            {
+                return _PalletType;
+            }
+            set
+            {
+                OnPalletTypeChanging(value);
+                ReportPropertyChanging("PalletType");
+                _PalletType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PalletType");
+                OnPalletTypeChanged();
+            }
+        }
+        private global::System.String _PalletType;
+        partial void OnPalletTypeChanging(global::System.String value);
+        partial void OnPalletTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PalletWeight
+        {
+            get
+            {
+                return _PalletWeight;
+            }
+            set
+            {
+                OnPalletWeightChanging(value);
+                ReportPropertyChanging("PalletWeight");
+                _PalletWeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PalletWeight");
+                OnPalletWeightChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PalletWeight;
+        partial void OnPalletWeightChanging(Nullable<global::System.Double> value);
+        partial void OnPalletWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PalletHeight
+        {
+            get
+            {
+                return _PalletHeight;
+            }
+            set
+            {
+                OnPalletHeightChanging(value);
+                ReportPropertyChanging("PalletHeight");
+                _PalletHeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PalletHeight");
+                OnPalletHeightChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PalletHeight;
+        partial void OnPalletHeightChanging(Nullable<global::System.Double> value);
+        partial void OnPalletHeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PalletWidth
+        {
+            get
+            {
+                return _PalletWidth;
+            }
+            set
+            {
+                OnPalletWidthChanging(value);
+                ReportPropertyChanging("PalletWidth");
+                _PalletWidth = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PalletWidth");
+                OnPalletWidthChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PalletWidth;
+        partial void OnPalletWidthChanging(Nullable<global::System.Double> value);
+        partial void OnPalletWidthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> palletCreatedTime
+        {
+            get
+            {
+                return _palletCreatedTime;
+            }
+            set
+            {
+                OnpalletCreatedTimeChanging(value);
+                ReportPropertyChanging("palletCreatedTime");
+                _palletCreatedTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("palletCreatedTime");
+                OnpalletCreatedTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _palletCreatedTime;
+        partial void OnpalletCreatedTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnpalletCreatedTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RowID
+        {
+            get
+            {
+                return _RowID;
+            }
+            set
+            {
+                OnRowIDChanging(value);
+                ReportPropertyChanging("RowID");
+                _RowID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RowID");
+                OnRowIDChanged();
+            }
+        }
+        private global::System.Int32 _RowID;
+        partial void OnRowIDChanging(global::System.Int32 value);
+        partial void OnRowIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PalletNumber
+        {
+            get
+            {
+                return _PalletNumber;
+            }
+            set
+            {
+                OnPalletNumberChanging(value);
+                ReportPropertyChanging("PalletNumber");
+                _PalletNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PalletNumber");
+                OnPalletNumberChanged();
+            }
+        }
+        private global::System.String _PalletNumber;
+        partial void OnPalletNumberChanging(global::System.String value);
+        partial void OnPalletNumberChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_PalletDetail_PalletDetail", "PalletDetail")]
+        public EntityCollection<PalletDetail> PalletDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PalletDetail>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PalletDetail>("x3v6Model1.FK_PalletDetail_PalletDetail", "PalletDetail", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="x3v6Model1", Name="Reason")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -7193,10 +7742,132 @@ namespace PackingClassLibrary
         private global::System.String _RGAROWID;
         partial void OnRGAROWIDChanging(global::System.String value);
         partial void OnRGAROWIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Wrong_RMA_Flg
+        {
+            get
+            {
+                return _Wrong_RMA_Flg;
+            }
+            set
+            {
+                OnWrong_RMA_FlgChanging(value);
+                ReportPropertyChanging("Wrong_RMA_Flg");
+                _Wrong_RMA_Flg = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Wrong_RMA_Flg");
+                OnWrong_RMA_FlgChanged();
+            }
+        }
+        private global::System.String _Wrong_RMA_Flg;
+        partial void OnWrong_RMA_FlgChanging(global::System.String value);
+        partial void OnWrong_RMA_FlgChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Warranty_STA
+        {
+            get
+            {
+                return _Warranty_STA;
+            }
+            set
+            {
+                OnWarranty_STAChanging(value);
+                ReportPropertyChanging("Warranty_STA");
+                _Warranty_STA = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Warranty_STA");
+                OnWarranty_STAChanged();
+            }
+        }
+        private global::System.String _Warranty_STA;
+        partial void OnWarranty_STAChanging(global::System.String value);
+        partial void OnWarranty_STAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Setting_Wty_Days
+        {
+            get
+            {
+                return _Setting_Wty_Days;
+            }
+            set
+            {
+                OnSetting_Wty_DaysChanging(value);
+                ReportPropertyChanging("Setting_Wty_Days");
+                _Setting_Wty_Days = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Setting_Wty_Days");
+                OnSetting_Wty_DaysChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Setting_Wty_Days;
+        partial void OnSetting_Wty_DaysChanging(Nullable<global::System.Int32> value);
+        partial void OnSetting_Wty_DaysChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ShipDate_ScanDate_Days_Diff
+        {
+            get
+            {
+                return _ShipDate_ScanDate_Days_Diff;
+            }
+            set
+            {
+                OnShipDate_ScanDate_Days_DiffChanging(value);
+                ReportPropertyChanging("ShipDate_ScanDate_Days_Diff");
+                _ShipDate_ScanDate_Days_Diff = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShipDate_ScanDate_Days_Diff");
+                OnShipDate_ScanDate_Days_DiffChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ShipDate_ScanDate_Days_Diff;
+        partial void OnShipDate_ScanDate_Days_DiffChanging(Nullable<global::System.Int32> value);
+        partial void OnShipDate_ScanDate_Days_DiffChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_Return", "ReturnedSKU_Reason_Points")]
+        public EntityCollection<ReturnedSKU_Reason_Points> ReturnedSKU_Reason_Points
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReturnedSKU_Reason_Points>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "ReturnedSKU_Reason_Points");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReturnedSKU_Reason_Points>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "ReturnedSKU_Reason_Points", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -7590,6 +8261,198 @@ namespace PackingClassLibrary
         private global::System.String _RGADROWID;
         partial void OnRGADROWIDChanging(global::System.String value);
         partial void OnRGADROWIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProductID
+        {
+            get
+            {
+                return _ProductID;
+            }
+            set
+            {
+                OnProductIDChanging(value);
+                ReportPropertyChanging("ProductID");
+                _ProductID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProductID");
+                OnProductIDChanged();
+            }
+        }
+        private global::System.String _ProductID;
+        partial void OnProductIDChanging(global::System.String value);
+        partial void OnProductIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SalesPrice
+        {
+            get
+            {
+                return _SalesPrice;
+            }
+            set
+            {
+                OnSalesPriceChanging(value);
+                ReportPropertyChanging("SalesPrice");
+                _SalesPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SalesPrice");
+                OnSalesPriceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SalesPrice;
+        partial void OnSalesPriceChanging(Nullable<global::System.Decimal> value);
+        partial void OnSalesPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SKU_Qty_Seq
+        {
+            get
+            {
+                return _SKU_Qty_Seq;
+            }
+            set
+            {
+                OnSKU_Qty_SeqChanging(value);
+                ReportPropertyChanging("SKU_Qty_Seq");
+                _SKU_Qty_Seq = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SKU_Qty_Seq");
+                OnSKU_Qty_SeqChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SKU_Qty_Seq;
+        partial void OnSKU_Qty_SeqChanging(Nullable<global::System.Int32> value);
+        partial void OnSKU_Qty_SeqChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SKU_Sequence
+        {
+            get
+            {
+                return _SKU_Sequence;
+            }
+            set
+            {
+                OnSKU_SequenceChanging(value);
+                ReportPropertyChanging("SKU_Sequence");
+                _SKU_Sequence = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SKU_Sequence");
+                OnSKU_SequenceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SKU_Sequence;
+        partial void OnSKU_SequenceChanging(Nullable<global::System.Int32> value);
+        partial void OnSKU_SequenceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> IsSkuScanned
+        {
+            get
+            {
+                return _IsSkuScanned;
+            }
+            set
+            {
+                OnIsSkuScannedChanging(value);
+                ReportPropertyChanging("IsSkuScanned");
+                _IsSkuScanned = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSkuScanned");
+                OnIsSkuScannedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _IsSkuScanned;
+        partial void OnIsSkuScannedChanging(Nullable<global::System.Int32> value);
+        partial void OnIsSkuScannedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> IsManuallyAdded
+        {
+            get
+            {
+                return _IsManuallyAdded;
+            }
+            set
+            {
+                OnIsManuallyAddedChanging(value);
+                ReportPropertyChanging("IsManuallyAdded");
+                _IsManuallyAdded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsManuallyAdded");
+                OnIsManuallyAddedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _IsManuallyAdded;
+        partial void OnIsManuallyAddedChanging(Nullable<global::System.Int32> value);
+        partial void OnIsManuallyAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SKU_Status
+        {
+            get
+            {
+                return _SKU_Status;
+            }
+            set
+            {
+                OnSKU_StatusChanging(value);
+                ReportPropertyChanging("SKU_Status");
+                _SKU_Status = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SKU_Status");
+                OnSKU_StatusChanged();
+            }
+        }
+        private global::System.String _SKU_Status;
+        partial void OnSKU_StatusChanging(global::System.String value);
+        partial void OnSKU_StatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SKU_Reason_Total_Points
+        {
+            get
+            {
+                return _SKU_Reason_Total_Points;
+            }
+            set
+            {
+                OnSKU_Reason_Total_PointsChanging(value);
+                ReportPropertyChanging("SKU_Reason_Total_Points");
+                _SKU_Reason_Total_Points = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SKU_Reason_Total_Points");
+                OnSKU_Reason_Total_PointsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SKU_Reason_Total_Points;
+        partial void OnSKU_Reason_Total_PointsChanging(Nullable<global::System.Int32> value);
+        partial void OnSKU_Reason_Total_PointsChanged();
 
         #endregion
 
@@ -7636,6 +8499,333 @@ namespace PackingClassLibrary
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SKUReason>("x3v6Model1.FK_Transaction_ReturnDetail", "SKUReason", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnedSKU_Reason_Points")]
+        public EntityCollection<ReturnedSKU_Reason_Points> ReturnedSKU_Reason_Points
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReturnedSKU_Reason_Points>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnedSKU_Reason_Points");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReturnedSKU_Reason_Points>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnedSKU_Reason_Points", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="x3v6Model1", Name="ReturnedSKU_Reason_Points")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ReturnedSKU_Reason_Points : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ReturnedSKU_Reason_Points object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static ReturnedSKU_Reason_Points CreateReturnedSKU_Reason_Points(global::System.Guid id)
+        {
+            ReturnedSKU_Reason_Points returnedSKU_Reason_Points = new ReturnedSKU_Reason_Points();
+            returnedSKU_Reason_Points.ID = id;
+            return returnedSKU_Reason_Points;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ReturnID
+        {
+            get
+            {
+                return _ReturnID;
+            }
+            set
+            {
+                OnReturnIDChanging(value);
+                ReportPropertyChanging("ReturnID");
+                _ReturnID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReturnID");
+                OnReturnIDChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ReturnID;
+        partial void OnReturnIDChanging(Nullable<global::System.Guid> value);
+        partial void OnReturnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ReturnDetailID
+        {
+            get
+            {
+                return _ReturnDetailID;
+            }
+            set
+            {
+                OnReturnDetailIDChanging(value);
+                ReportPropertyChanging("ReturnDetailID");
+                _ReturnDetailID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReturnDetailID");
+                OnReturnDetailIDChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ReturnDetailID;
+        partial void OnReturnDetailIDChanging(Nullable<global::System.Guid> value);
+        partial void OnReturnDetailIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SKU
+        {
+            get
+            {
+                return _SKU;
+            }
+            set
+            {
+                OnSKUChanging(value);
+                ReportPropertyChanging("SKU");
+                _SKU = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SKU");
+                OnSKUChanged();
+            }
+        }
+        private global::System.String _SKU;
+        partial void OnSKUChanging(global::System.String value);
+        partial void OnSKUChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Reason
+        {
+            get
+            {
+                return _Reason;
+            }
+            set
+            {
+                OnReasonChanging(value);
+                ReportPropertyChanging("Reason");
+                _Reason = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reason");
+                OnReasonChanged();
+            }
+        }
+        private global::System.String _Reason;
+        partial void OnReasonChanging(global::System.String value);
+        partial void OnReasonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Reason_Value
+        {
+            get
+            {
+                return _Reason_Value;
+            }
+            set
+            {
+                OnReason_ValueChanging(value);
+                ReportPropertyChanging("Reason_Value");
+                _Reason_Value = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reason_Value");
+                OnReason_ValueChanged();
+            }
+        }
+        private global::System.String _Reason_Value;
+        partial void OnReason_ValueChanging(global::System.String value);
+        partial void OnReason_ValueChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Points
+        {
+            get
+            {
+                return _Points;
+            }
+            set
+            {
+                OnPointsChanging(value);
+                ReportPropertyChanging("Points");
+                _Points = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Points");
+                OnPointsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Points;
+        partial void OnPointsChanging(Nullable<global::System.Int32> value);
+        partial void OnPointsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SkuSequence
+        {
+            get
+            {
+                return _SkuSequence;
+            }
+            set
+            {
+                OnSkuSequenceChanging(value);
+                ReportPropertyChanging("SkuSequence");
+                _SkuSequence = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SkuSequence");
+                OnSkuSequenceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SkuSequence;
+        partial void OnSkuSequenceChanging(Nullable<global::System.Int32> value);
+        partial void OnSkuSequenceChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_Return", "Return")]
+        public Return Return
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Return>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "Return").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Return>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "Return").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Return> ReturnReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Return>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "Return");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Return>("x3v6Model1.FK_ReturnedSKU_Reason_Points_Return", "Return", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("x3v6Model1", "FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail")]
+        public ReturnDetail ReturnDetail
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReturnDetail>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReturnDetail>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ReturnDetail> ReturnDetailReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReturnDetail>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReturnDetail>("x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail", "ReturnDetail", value);
                 }
             }
         }

@@ -6,7 +6,6 @@
         <Viewbox>
             <Border>
                 <Canvas Height="760" Width="1280" >
-
                     <DataGrid  x:Name="grdContent" SelectionMode="Extended" 
                                         ItemsSource="{Binding}" HorizontalAlignment="Center" 
                                        VerticalAlignment="Center"
@@ -78,6 +77,9 @@
                     <TextBox Name="txtBoxNumberScanned" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="661" TextWrapping="Wrap" Width="438" Canvas.Top="93" KeyDown="txtBoxNumberScanned_KeyDown" IsEnabled="False" Text="Click here and Scan Box Number" GotFocus="txtBoxNumberScanned_GotFocus"/>
                     <TextBlock Canvas.Left="405" FontSize="25" TextWrapping="Wrap" Text="Scanned Box Number :" Canvas.Top="93"/>
                     <Button x:Name="btnAddNewBox" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="42" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="18" Canvas.Left="1124" Canvas.Top="92" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+
+                    <Button x:Name="btnAddNewPallet" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Add a Pallet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="53" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1091" Canvas.Top="23" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+
                     <TextBlock Canvas.Left="358" FontSize="35" FontWeight="Bold" TextWrapping="Wrap" Text="Carton label Print Window" Canvas.Top="29"/>
                     <TextBlock Canvas.Left="14" FontSize="25" TextWrapping="Wrap" Text="Mark for WH :" Canvas.Top="93"/>
                     <TextBox x:Name="txtWH" Style="{StaticResource StyleInputTextBox}" Height="42" Canvas.Left="174" TextWrapping="Wrap" Text="" Width="194" Canvas.Top="93" TextChanged="txtWH_TextChanged_1" />

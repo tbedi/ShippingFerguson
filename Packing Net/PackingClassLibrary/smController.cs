@@ -1163,6 +1163,18 @@ namespace PackingClassLibrary
             return _box.SaveBoxPackage(lsboxPackageInfo);
         }
 
+        public Guid SetPallet(List<cstPalletInfo> lspalletInfo)
+        {
+            cmdPallet _box = new cmdPallet();
+            return _box.SavePalletInfo(lspalletInfo);
+        }
+
+        public Guid SetPalletDetails(List<cstPalletDetails> lspalletDetailInfo)
+        {
+            cmdPallet _box = new cmdPallet();
+            return _box.SavePalletDetailInfo(lspalletDetailInfo);
+        }
+
         /// <summary>
         /// get all table of Box Package.
         /// </summary>
@@ -1194,6 +1206,20 @@ namespace PackingClassLibrary
             cmdBox _box = new cmdBox();
             return _box.GetSelectedByBoxID(BoxID);    
         }
+
+        public cstPalletInfo GetPalletInfoByPalletID(Guid PalletID)
+        {
+            cmdPallet _box = new cmdPallet();
+            return _box.GetSelectedByPalletID(PalletID);
+        }
+
+        public cstPalletDetails GetPalletDetailByPalletDetailID(Guid PalletDetailID)
+        {
+            cmdPallet _box = new cmdPallet();
+            return _box.GetpalletDetailsByPalletDetailID(PalletDetailID);
+        }
+
+
 
         /// <summary>
         /// Sort BoxPackage Table Information by Box number

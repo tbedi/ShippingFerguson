@@ -44,7 +44,10 @@ namespace Packing_Net.Classes
         public static int numbersku;
         public static string LoginType;
         public static string LTLLogin;
-     
+
+        public static Guid PalletID;
+
+        public static Guid PalletDetailID;
 
 
         public static string ShippingNumber;

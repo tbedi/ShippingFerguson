@@ -12,10 +12,13 @@
           <EntitySet Name="ErrorLog" EntityType="x3v6Model1.Store.ErrorLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Package" EntityType="x3v6Model1.Store.Package" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageDetail" EntityType="x3v6Model1.Store.PackageDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PalletDetail" EntityType="x3v6Model1.Store.PalletDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PalletInfo" EntityType="x3v6Model1.Store.PalletInfo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReasonCategory" EntityType="x3v6Model1.Store.ReasonCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Reasons" EntityType="x3v6Model1.Store.Reasons" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Return" EntityType="x3v6Model1.Store.Return" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReturnDetail" EntityType="x3v6Model1.Store.ReturnDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReturnedSKU_Reason_Points" EntityType="x3v6Model1.Store.ReturnedSKU_Reason_Points" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReturnImages" EntityType="x3v6Model1.Store.ReturnImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RMAAudit" EntityType="x3v6Model1.Store.RMAAudit" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="x3v6Model1.Store.Roles" store:Type="Tables" Schema="dbo" />
@@ -393,6 +396,18 @@
             <End Role="Package" EntitySet="Package" />
             <End Role="PackageDetail" EntitySet="PackageDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_PalletDetail_PalletDetail" Association="x3v6Model1.Store.FK_PalletDetail_PalletDetail">
+            <End Role="PalletInfo" EntitySet="PalletInfo" />
+            <End Role="PalletDetail" EntitySet="PalletDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnedSKU_Reason_Points_Return" Association="x3v6Model1.Store.FK_ReturnedSKU_Reason_Points_Return">
+            <End Role="Return" EntitySet="Return" />
+            <End Role="ReturnedSKU_Reason_Points" EntitySet="ReturnedSKU_Reason_Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnedSKU_Reason_Points_ReturnDetail" Association="x3v6Model1.Store.FK_ReturnedSKU_Reason_Points_ReturnDetail">
+            <End Role="ReturnDetail" EntitySet="ReturnDetail" />
+            <End Role="ReturnedSKU_Reason_Points" EntitySet="ReturnedSKU_Reason_Points" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReturnImages_ReturnDetail" Association="x3v6Model1.Store.FK_ReturnImages_ReturnDetail">
             <End Role="ReturnDetail" EntitySet="ReturnDetail" />
             <End Role="ReturnImages" EntitySet="ReturnImages" />
@@ -528,6 +543,30 @@
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="Updatedby" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="PalletDetail">
+          <Key>
+            <PropertyRef Name="PalletDetailID" />
+          </Key>
+          <Property Name="PalletDetailID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PalletID" Type="uniqueidentifier" />
+          <Property Name="BoxNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ShipmentNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CartonNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PrintStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="PalletInfo">
+          <Key>
+            <PropertyRef Name="PalletID" />
+          </Key>
+          <Property Name="PalletID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PalletType" Type="varchar" MaxLength="50" />
+          <Property Name="PalletWeight" Type="float" />
+          <Property Name="PalletHeight" Type="float" />
+          <Property Name="PalletWidth" Type="float" />
+          <Property Name="palletCreatedTime" Type="datetime" />
+          <Property Name="RowID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PalletNumber" Type="varchar" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="ReasonCategory">
           <Key>
             <PropertyRef Name="ReasonCatID" />
@@ -576,6 +615,10 @@
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="Wrong_RMA_Flg" Type="nvarchar(max)" />
+          <Property Name="Warranty_STA" Type="nvarchar(max)" />
+          <Property Name="Setting_Wty_Days" Type="int" />
+          <Property Name="ShipDate_ScanDate_Days_Diff" Type="int" />
           <Property Name="ROWID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RGAROWID" Type="varchar" StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -585,19 +628,40 @@
           </Key>
           <Property Name="ReturnDetailID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ReturnID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductID" Type="varchar(max)" />
           <Property Name="SKUNumber" Type="varchar(max)" />
           <Property Name="ProductName" Type="varchar(max)" />
           <Property Name="TCLCOD_0" Type="nvarchar" MaxLength="5" />
+          <Property Name="SalesPrice" Type="money" />
           <Property Name="DeliveredQty" Type="int" />
           <Property Name="ExpectedQty" Type="int" />
           <Property Name="ReturnQty" Type="int" />
           <Property Name="ProductStatus" Type="int" />
+          <Property Name="SKU_Qty_Seq" Type="int" />
+          <Property Name="SKU_Sequence" Type="int" />
+          <Property Name="IsSkuScanned" Type="int" />
+          <Property Name="IsManuallyAdded" Type="int" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpadatedDate" Type="datetime" />
+          <Property Name="SKU_Status" Type="nvarchar(max)" />
+          <Property Name="SKU_Reason_Total_Points" Type="int" />
           <Property Name="ROWID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RGADROWID" Type="varchar" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ReturnedSKU_Reason_Points">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReturnID" Type="uniqueidentifier" />
+          <Property Name="ReturnDetailID" Type="uniqueidentifier" />
+          <Property Name="SKU" Type="nvarchar(max)" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="Reason_Value" Type="nvarchar(max)" />
+          <Property Name="Points" Type="int" />
+          <Property Name="SkuSequence" Type="int" />
         </EntityType>
         <EntityType Name="ReturnImages">
           <Key>
@@ -828,6 +892,7 @@
         <EntityType Name="Get_Shipping_Data">
           <Key>
             <PropertyRef Name="ShipmentID" />
+            
             <PropertyRef Name="ProductName" />
             <PropertyRef Name="ItemWeight" />
             <PropertyRef Name="UnitOfMeasure" />
@@ -840,7 +905,7 @@
           </Key>
           <Property Name="Row_Number" Type="int" />
           <Property Name="ShipmentID" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="SKU" Type="nvarchar" MaxLength="30" />
+          <Property Name="SKU" Type="nvarchar" Nullable="false" MaxLength="30" />
           <Property Name="ItemName" Type="nvarchar" MaxLength="20" />
           <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="30" />
           <Property Name="Quantity" Type="int" />
@@ -1382,6 +1447,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PalletDetail_PalletDetail">
+          <End Role="PalletInfo" Type="x3v6Model1.Store.PalletInfo" Multiplicity="0..1" />
+          <End Role="PalletDetail" Type="x3v6Model1.Store.PalletDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PalletInfo">
+              <PropertyRef Name="PalletID" />
+            </Principal>
+            <Dependent Role="PalletDetail">
+              <PropertyRef Name="PalletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnedSKU_Reason_Points_Return">
+          <End Role="Return" Type="x3v6Model1.Store.Return" Multiplicity="0..1" />
+          <End Role="ReturnedSKU_Reason_Points" Type="x3v6Model1.Store.ReturnedSKU_Reason_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Return">
+              <PropertyRef Name="ReturnID" />
+            </Principal>
+            <Dependent Role="ReturnedSKU_Reason_Points">
+              <PropertyRef Name="ReturnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnedSKU_Reason_Points_ReturnDetail">
+          <End Role="ReturnDetail" Type="x3v6Model1.Store.ReturnDetail" Multiplicity="0..1" />
+          <End Role="ReturnedSKU_Reason_Points" Type="x3v6Model1.Store.ReturnedSKU_Reason_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnDetail">
+              <PropertyRef Name="ReturnDetailID" />
+            </Principal>
+            <Dependent Role="ReturnedSKU_Reason_Points">
+              <PropertyRef Name="ReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReturnImages_ReturnDetail">
           <End Role="ReturnDetail" Type="x3v6Model1.Store.ReturnDetail" Multiplicity="1" />
           <End Role="ReturnImages" Type="x3v6Model1.Store.ReturnImages" Multiplicity="*" />
@@ -1651,7 +1752,7 @@
           <EntitySet Name="Shipping_Box_Data_UPS" EntityType="x3v6Model1.Shipping_Box_Data_UPS" />
           <EntitySet Name="Shipping_Box_Details_Data" EntityType="x3v6Model1.Shipping_Box_Details_Data" />
           <FunctionImport Name="Get_Shipping_Data_Procedure" ReturnType="Collection(x3v6Model1.Get_Shipping_Data_Procedure_Result)">
-            <Parameter Name="Ship_ID" Mode="In" Type="String" />
+          <Parameter Name="Ship_ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1684,8 +1785,23 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="Update_Exported_Rows">
-            <Parameter Name="TRKNUM" Mode="In" Type="String" />
+          <Parameter Name="TRKNUM" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="PalletDetails" EntityType="x3v6Model1.PalletDetail" />
+          <EntitySet Name="PalletInfoes" EntityType="x3v6Model1.PalletInfo" />
+          <EntitySet Name="ReturnedSKU_Reason_Points" EntityType="x3v6Model1.ReturnedSKU_Reason_Points" />
+          <AssociationSet Name="FK_PalletDetail_PalletDetail" Association="x3v6Model1.FK_PalletDetail_PalletDetail">
+            <End Role="PalletInfo" EntitySet="PalletInfoes" />
+            <End Role="PalletDetail" EntitySet="PalletDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnedSKU_Reason_Points_Return" Association="x3v6Model1.FK_ReturnedSKU_Reason_Points_Return">
+            <End Role="Return" EntitySet="Returns" />
+            <End Role="ReturnedSKU_Reason_Points" EntitySet="ReturnedSKU_Reason_Points" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnedSKU_Reason_Points_ReturnDetail" Association="x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail">
+            <End Role="ReturnDetail" EntitySet="ReturnDetails" />
+            <End Role="ReturnedSKU_Reason_Points" EntitySet="ReturnedSKU_Reason_Points" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Audit">
           <Key>
@@ -1984,7 +2100,7 @@
           </Key>
           <Property Type="Int32" Name="Row_Number" />
           <Property Type="String" Name="ShipmentID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SKU" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SKU" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Type="String" Name="ItemName" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ProductName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Quantity" />
@@ -2302,6 +2418,11 @@
           <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
           <Property Type="Int32" Name="ROWID" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="RGAROWID" MaxLength="8000" FixedLength="false" Unicode="false" p1:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="Wrong_RMA_Flg" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Warranty_STA" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Setting_Wty_Days" />
+          <Property Type="Int32" Name="ShipDate_ScanDate_Days_Diff" />
+          <NavigationProperty Name="ReturnedSKU_Reason_Points" Relationship="x3v6Model1.FK_ReturnedSKU_Reason_Points_Return" FromRole="Return" ToRole="ReturnedSKU_Reason_Points" />
         </EntityType>
         <EntityType Name="ReturnDetail">
           <Key>
@@ -2324,6 +2445,15 @@
           <Property Type="String" Name="RGADROWID" MaxLength="8000" FixedLength="false" Unicode="false" p1:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ReturnImages" Relationship="x3v6Model1.FK_ReturnImages_ReturnDetail" FromRole="ReturnDetail" ToRole="ReturnImage" />
           <NavigationProperty Name="SKUReasons" Relationship="x3v6Model1.FK_Transaction_ReturnDetail" FromRole="ReturnDetail" ToRole="SKUReason" />
+          <Property Type="String" Name="ProductID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="SalesPrice" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="SKU_Qty_Seq" />
+          <Property Type="Int32" Name="SKU_Sequence" />
+          <Property Type="Int32" Name="IsSkuScanned" />
+          <Property Type="Int32" Name="IsManuallyAdded" />
+          <Property Type="String" Name="SKU_Status" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SKU_Reason_Total_Points" />
+          <NavigationProperty Name="ReturnedSKU_Reason_Points" Relationship="x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail" FromRole="ReturnDetail" ToRole="ReturnedSKU_Reason_Points" />
         </EntityType>
         <EntityType Name="ReturnImage">
           <Key>
@@ -2804,6 +2934,83 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="PalletDetail">
+          <Key>
+            <PropertyRef Name="PalletDetailID" />
+          </Key>
+          <Property Type="Guid" Name="PalletDetailID" Nullable="false" />
+          <Property Type="Guid" Name="PalletID" />
+          <Property Type="String" Name="BoxNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ShipmentNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CartonNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="PrintStatus" />
+          <NavigationProperty Name="PalletInfo" Relationship="x3v6Model1.FK_PalletDetail_PalletDetail" FromRole="PalletDetail" ToRole="PalletInfo" />
+        </EntityType>
+        <EntityType Name="PalletInfo">
+          <Key>
+            <PropertyRef Name="PalletID" />
+          </Key>
+          <Property Type="Guid" Name="PalletID" Nullable="false" />
+          <Property Type="String" Name="PalletType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PalletWeight" />
+          <Property Type="Double" Name="PalletHeight" />
+          <Property Type="Double" Name="PalletWidth" />
+          <Property Type="DateTime" Name="palletCreatedTime" Precision="3" />
+          <Property Type="Int32" Name="RowID" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PalletNumber" MaxLength="8000" FixedLength="false" Unicode="false" p1:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PalletDetails" Relationship="x3v6Model1.FK_PalletDetail_PalletDetail" FromRole="PalletInfo" ToRole="PalletDetail" />
+        </EntityType>
+        <EntityType Name="ReturnedSKU_Reason_Points">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="ReturnID" />
+          <Property Type="Guid" Name="ReturnDetailID" />
+          <Property Type="String" Name="SKU" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Reason" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Reason_Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Points" />
+          <Property Type="Int32" Name="SkuSequence" />
+          <NavigationProperty Name="Return" Relationship="x3v6Model1.FK_ReturnedSKU_Reason_Points_Return" FromRole="ReturnedSKU_Reason_Points" ToRole="Return" />
+          <NavigationProperty Name="ReturnDetail" Relationship="x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail" FromRole="ReturnedSKU_Reason_Points" ToRole="ReturnDetail" />
+        </EntityType>
+        <Association Name="FK_PalletDetail_PalletDetail">
+          <End Type="x3v6Model1.PalletInfo" Role="PalletInfo" Multiplicity="0..1" />
+          <End Type="x3v6Model1.PalletDetail" Role="PalletDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PalletInfo">
+              <PropertyRef Name="PalletID" />
+            </Principal>
+            <Dependent Role="PalletDetail">
+              <PropertyRef Name="PalletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnedSKU_Reason_Points_Return">
+          <End Type="x3v6Model1.Return" Role="Return" Multiplicity="0..1" />
+          <End Type="x3v6Model1.ReturnedSKU_Reason_Points" Role="ReturnedSKU_Reason_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Return">
+              <PropertyRef Name="ReturnID" />
+            </Principal>
+            <Dependent Role="ReturnedSKU_Reason_Points">
+              <PropertyRef Name="ReturnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnedSKU_Reason_Points_ReturnDetail">
+          <End Type="x3v6Model1.ReturnDetail" Role="ReturnDetail" Multiplicity="0..1" />
+          <End Type="x3v6Model1.ReturnedSKU_Reason_Points" Role="ReturnedSKU_Reason_Points" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnDetail">
+              <PropertyRef Name="ReturnDetailID" />
+            </Principal>
+            <Dependent Role="ReturnedSKU_Reason_Points">
+              <PropertyRef Name="ReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3177,6 +3384,10 @@
           <EntitySetMapping Name="Returns">
             <EntityTypeMapping TypeName="x3v6Model1.Return">
               <MappingFragment StoreEntitySet="Return">
+                <ScalarProperty Name="ShipDate_ScanDate_Days_Diff" ColumnName="ShipDate_ScanDate_Days_Diff" />
+                <ScalarProperty Name="Setting_Wty_Days" ColumnName="Setting_Wty_Days" />
+                <ScalarProperty Name="Warranty_STA" ColumnName="Warranty_STA" />
+                <ScalarProperty Name="Wrong_RMA_Flg" ColumnName="Wrong_RMA_Flg" />
                 <ScalarProperty Name="RGAROWID" ColumnName="RGAROWID" />
                 <ScalarProperty Name="ROWID" ColumnName="ROWID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -3213,6 +3424,14 @@
           <EntitySetMapping Name="ReturnDetails">
             <EntityTypeMapping TypeName="x3v6Model1.ReturnDetail">
               <MappingFragment StoreEntitySet="ReturnDetail">
+                <ScalarProperty Name="SKU_Reason_Total_Points" ColumnName="SKU_Reason_Total_Points" />
+                <ScalarProperty Name="SKU_Status" ColumnName="SKU_Status" />
+                <ScalarProperty Name="IsManuallyAdded" ColumnName="IsManuallyAdded" />
+                <ScalarProperty Name="IsSkuScanned" ColumnName="IsSkuScanned" />
+                <ScalarProperty Name="SKU_Sequence" ColumnName="SKU_Sequence" />
+                <ScalarProperty Name="SKU_Qty_Seq" ColumnName="SKU_Qty_Seq" />
+                <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="RGADROWID" ColumnName="RGADROWID" />
                 <ScalarProperty Name="ROWID" ColumnName="ROWID" />
                 <ScalarProperty Name="UpadatedDate" ColumnName="UpadatedDate" />
@@ -3624,6 +3843,46 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="x3v6Model1.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="x3v6Model1.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="Update_Exported_Rows" FunctionName="x3v6Model1.Store.Update_Exported_Rows" />
+          <EntitySetMapping Name="PalletDetails">
+            <EntityTypeMapping TypeName="x3v6Model1.PalletDetail">
+              <MappingFragment StoreEntitySet="PalletDetail">
+                <ScalarProperty Name="PrintStatus" ColumnName="PrintStatus" />
+                <ScalarProperty Name="CartonNumber" ColumnName="CartonNumber" />
+                <ScalarProperty Name="ShipmentNumber" ColumnName="ShipmentNumber" />
+                <ScalarProperty Name="BoxNumber" ColumnName="BoxNumber" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+                <ScalarProperty Name="PalletDetailID" ColumnName="PalletDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PalletInfoes">
+            <EntityTypeMapping TypeName="x3v6Model1.PalletInfo">
+              <MappingFragment StoreEntitySet="PalletInfo">
+                <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="palletCreatedTime" ColumnName="palletCreatedTime" />
+                <ScalarProperty Name="PalletWidth" ColumnName="PalletWidth" />
+                <ScalarProperty Name="PalletHeight" ColumnName="PalletHeight" />
+                <ScalarProperty Name="PalletWeight" ColumnName="PalletWeight" />
+                <ScalarProperty Name="PalletType" ColumnName="PalletType" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnedSKU_Reason_Points">
+            <EntityTypeMapping TypeName="x3v6Model1.ReturnedSKU_Reason_Points">
+              <MappingFragment StoreEntitySet="ReturnedSKU_Reason_Points">
+                <ScalarProperty Name="SkuSequence" ColumnName="SkuSequence" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Reason_Value" ColumnName="Reason_Value" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="ReturnDetailID" ColumnName="ReturnDetailID" />
+                <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

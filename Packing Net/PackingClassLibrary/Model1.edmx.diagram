@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fc7a5913538249f4ae7c1a20a0dab270" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="x3v6Model1.Audit" Width="1.5" PointX="11.031569642495164" PointY="9.4744318916808954" />
+        <EntityTypeShape EntityType="x3v6Model1.Audit" Width="1.5" PointX="12.5" PointY="9.5" />
         <EntityTypeShape EntityType="x3v6Model1.BoxPackage" Width="1.5" PointX="0.78659802153082459" PointY="28.678135378602025" />
         <EntityTypeShape EntityType="x3v6Model1.ErrorLog" Width="1.5" PointX="2.3934421587704877" PointY="20.349469939409509" />
         <EntityTypeShape EntityType="x3v6Model1.Package" Width="1.5" PointX="8.2495802101910023" PointY="26.776506838750329" />
@@ -51,6 +51,12 @@
         <EntityTypeShape EntityType="x3v6Model1.Shipping_Box_Data_FEDEX" Width="1.5" PointX="4.8111317329160554" PointY="1.9029092499534177" />
         <EntityTypeShape EntityType="x3v6Model1.Shipping_Box_Data_UPS" Width="1.5" PointX="4.7210741791506639" PointY="12.044394454008153" />
         <EntityTypeShape EntityType="x3v6Model1.Shipping_Box_Details_Data" Width="1.5" PointX="0.68325809607434" PointY="2.4485392134862667" />
+        <EntityTypeShape EntityType="x3v6Model1.PalletDetail" Width="1.5" PointX="7.2177201021545194" PointY="7.9296665675610614" />
+        <EntityTypeShape EntityType="x3v6Model1.PalletInfo" Width="1.5" PointX="0.95527098186093884" PointY="0.25955638301538136" />
+        <EntityTypeShape EntityType="x3v6Model1.ReturnedSKU_Reason_Points" Width="1.5" PointX="11.300281991856304" PointY="18.957312279826642" />
+        <AssociationConnector Association="x3v6Model1.FK_PalletDetail_PalletDetail" />
+        <AssociationConnector Association="x3v6Model1.FK_ReturnedSKU_Reason_Points_Return" />
+        <AssociationConnector Association="x3v6Model1.FK_ReturnedSKU_Reason_Points_ReturnDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

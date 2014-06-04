@@ -54,6 +54,7 @@
     <Compile Include="Commands\SMcommands\cmdDeviceMACaddress.cs" />
     <Compile Include="Commands\SMcommands\cmdGetSlipData.cs" />
     <Compile Include="Commands\SMcommands\cmdPackage.cs" />
+    <Compile Include="Commands\SMcommands\cmdPallet.cs" />
     <Compile Include="Commands\SMcommands\cmdRole.cs" />
     <Compile Include="Commands\SMcommands\cmdSageOperations.cs" />
     <Compile Include="Commands\SMcommands\cmdShipping.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="Commands\SMcommands\cmdViewExtra.cs" />
     <Compile Include="CustomEntity\ReportEntitys\cstDashBoardStion.cs" />
     <Compile Include="CustomEntity\SMEntitys\cstBoxPackage.cs" />
+    <Compile Include="CustomEntity\SMEntitys\cstPalletDetails.cs" />
+    <Compile Include="CustomEntity\SMEntitys\cstPalletInfo.cs" />
     <Compile Include="CustomEntity\SMEntitys\cstSlipData.cs" />
     <Compile Include="CustomEntity\SMEntitys\cstCartonInfo.cs" />
     <Compile Include="CustomEntity\SMEntitys\cstViewExtraColumns.cs" />
