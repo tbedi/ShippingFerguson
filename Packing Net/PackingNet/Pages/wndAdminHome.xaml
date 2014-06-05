@@ -63,6 +63,13 @@
         						Stretch="UniformToFill" Opacity="0.5" />
                         </Border>
                         <Border BorderBrush="#FF555555" BorderThickness="3"
+        					HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"
+        					Width="40" Canvas.Left="18" Canvas.Top="317" Background="#FF555555">
+                            <Image HorizontalAlignment="Left" Height="40" Margin="-4,-3,-2,-3"
+        						VerticalAlignment="Bottom" Width="40" Source="/PackingNet;component/Images/imgReport.png" 
+        						Stretch="UniformToFill" Opacity="0.5" />
+                        </Border>
+                        <Border BorderBrush="#FF555555" BorderThickness="3"
         					HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" 
         					Width="40" Canvas.Left="18" Canvas.Top="217" Background="#FF555555">
                             <Image HorizontalAlignment="Left" Height="40"
@@ -84,6 +91,14 @@
         					Width="128" Height="42" Background="#FF535353" Foreground="White"
         					BorderBrush="{x:Null}" FontSize="15" Canvas.Left="57" Canvas.Top="267"
         					x:Name="btnLogout" Click="btnLogout_Click"  />
+                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+        					Content="Pallet Label Print" HorizontalAlignment="Left" VerticalAlignment="Top"
+        					Width="128" Height="42" Background="#FF535353" Foreground="White"
+        					BorderBrush="{x:Null}" FontSize="15" Canvas.Left="56" Canvas.Top="316"
+        					x:Name="btnPalletLabel" />
+
+
+
                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
         					Content="Exit ➧" HorizontalAlignment="Left"
         					VerticalAlignment="Top" Width="131" Height="42"

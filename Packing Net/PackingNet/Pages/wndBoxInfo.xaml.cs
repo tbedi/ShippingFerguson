@@ -125,6 +125,8 @@ namespace PackingNet.Pages
                     lsBox.Add(_palletDetail);
                     Global.PalletDetailID = Global.controller.SetPalletDetails(lsBox);
 
+                    string palletNumber = Global.controller.GetPalletInfoByPalletID(Global.PalletID).PalletNumber;
+
 
                     this.Dispatcher.Invoke(new Action(() =>
                         {
@@ -134,7 +136,7 @@ namespace PackingNet.Pages
                                 if (txtBoxNum.Text == txtBoxNumberScanned.Text)
                                 {
                                     TextBlock txtstatus = grdContent.Columns[1].GetCellContent(row) as TextBlock;
-                                    txtstatus.Text = "Printed";
+                                    txtstatus.Text = "Added in" + " - "+palletNumber;
                                 }
                             }
                         }));
@@ -239,6 +241,17 @@ namespace PackingNet.Pages
       private void txtBoxNumberScanned_GotFocus(object sender, RoutedEventArgs e)
       {
           txtBoxNumberScanned.Text = "";
+      }
+
+      private void btnAddNewPallet_Click_1(object sender, RoutedEventArgs e)
+      {
+          cstPalletInfo _boxPackage = new cstPalletInfo();
+          _boxPackage.palletCreatedTime = DateTime.UtcNow;
+          List<cstPalletInfo> lsBox = new List<cstPalletInfo>();
+          lsBox.Add(_boxPackage);
+          Global.PalletID = Global.controller.SetPallet(lsBox);
+
+          btnAddNewPallet.Visibility = Visibility.Hidden;
       }
      
     }

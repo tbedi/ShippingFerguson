@@ -1,7 +1,7 @@
-﻿<Window x:Class="PackingNet.Pages.wndBoxInfo"
+﻿<Window x:Class="PackingNet.Pages.wndPalletPrintStatus"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="wndBoxInfo" Height="760" Width="1280" Loaded="Window_Loaded_1" WindowState="Maximized">
+        Title="wndPalletPrintStatus" Height="760" Width="1280" Loaded="Window_Loaded_1" WindowState="Maximized" >
     <Grid>
         <Viewbox>
             <Border>
@@ -15,7 +15,7 @@
                                     FontSize="17" Background="#FFFBFBFB"
                                    SelectionUnit="Cell" BorderThickness="1" 
                                    Cursor="Hand"   
-                                   BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="612" Width="1280" Canvas.Top="148"  >
+                                   BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="552" Width="1280" Canvas.Top="208"  >
                         <DataGrid.Resources>
                             <Style x:Key="ErrorStyle" TargetType="{x:Type TextBox}">
                                 <Setter Property="Padding" Value="-2"/>
@@ -30,14 +30,14 @@
                         </DataGrid.Resources>
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Binding="{Binding boxnumber}" Header="Box Number"  Width="180" IsReadOnly="True" FontSize="17">
+                            <DataGridTextColumn Binding="{Binding boxnumber}" Header="Pallet Number"  Width="180" IsReadOnly="True" FontSize="17">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Status}" Header="Pallet Info" Width="450" IsReadOnly="True" FontSize="17" >
+                            <DataGridTextColumn Binding="{Binding Status}" Header="Print Status" Width="450" IsReadOnly="True" FontSize="17" >
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -74,13 +74,18 @@
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
                     </DataGrid>
-                    <TextBox Name="txtBoxNumberScanned" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="315" TextWrapping="Wrap" Width="438" Canvas.Top="101" KeyDown="txtBoxNumberScanned_KeyDown" IsEnabled="True" GotFocus="txtBoxNumberScanned_GotFocus"/>
-                    <TextBlock Canvas.Left="44" FontSize="25" TextWrapping="Wrap" Text="Scanned Box Number :" Canvas.Top="102"/>
-                    <Button x:Name="btnAddNewBox" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Height="55" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1070" Canvas.Top="88" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+                    <TextBox Name="txtBoxNumberScanned" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" TextWrapping="Wrap" Width="438" Canvas.Top="150" KeyDown="txtBoxNumberScanned_KeyDown" IsEnabled="True" GotFocus="txtBoxNumberScanned_GotFocus"/>
 
-                    <Button x:Name="btnAddNewPallet" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Add a Pallet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="53" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="810" Canvas.Top="88" OpacityMask="#FFB45959" Click="btnAddNewPallet_Click_1"/>
+                    <TextBox Name="txtSHNumber" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" TextWrapping="Wrap" Width="438" Canvas.Top="100"  IsEnabled="True" />
 
-                    <TextBlock Canvas.Left="459" FontSize="35" FontWeight="Bold" TextWrapping="Wrap" Text="Pallet Information" Canvas.Top="29"/>
+                    <TextBlock Canvas.Left="172" FontSize="25" TextWrapping="Wrap" Text="Scanned Pallet Number :" Canvas.Top="152"/>
+                    <TextBlock Canvas.Left="300" FontSize="25" TextWrapping="Wrap" Text="SH Number :" Canvas.Top="99"/>
+                    
+                    <Button x:Name="btnAddNewBox" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Height="55" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1097" Canvas.Top="88" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+
+                  
+
+                    <TextBlock Canvas.Left="459" FontSize="35" FontWeight="Bold" TextWrapping="Wrap" Text="Pallet Label Print" Canvas.Top="29"/>
                     <TextBlock Canvas.Left="14" FontSize="25" TextWrapping="Wrap" Text="Mark for WH :" Canvas.Top="93" Visibility="Hidden"/>
                     <TextBox x:Name="txtWH" Style="{StaticResource StyleInputTextBox}" Height="42" Canvas.Left="174" TextWrapping="Wrap" Text="" Width="194" Canvas.Top="93" TextChanged="txtWH_TextChanged_1" Visibility="Hidden" />
                 </Canvas>
