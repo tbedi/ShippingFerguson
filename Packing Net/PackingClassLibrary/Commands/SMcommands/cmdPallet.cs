@@ -27,6 +27,7 @@ namespace PackingClassLibrary.Commands.SMcommands
                     _pallet.PalletHeight = _palletitem.PalletHeight;
                     _pallet.PalletWidth = _palletitem.PalletWeight;
                     _pallet.palletCreatedTime = _palletitem.palletCreatedTime;
+                    _pallet.PrintStatus = _palletitem.PrintStatus;
                     //if (_palletitem.BoxMeasurementTime.Date != Convert.ToDateTime("01/01/001").Date)
                     //{
                     //    _boxPackage.BoxMeasurementTime = _palletitem.BoxMeasurementTime;
@@ -92,6 +93,7 @@ namespace PackingClassLibrary.Commands.SMcommands
                 _pallet.PalletWidth = Convert.ToDouble(_palletitem.PalletWidth);
                 _pallet.palletCreatedTime = Convert.ToDateTime(_palletitem.palletCreatedTime);
                 _pallet.RowID = _palletitem.RowID;
+                _pallet.PrintStatus = _palletitem.PrintStatus;
                 _pallet.PalletNumber = _palletitem.PalletNumber;
                 _return = _pallet;
             }
@@ -123,6 +125,38 @@ namespace PackingClassLibrary.Commands.SMcommands
         }
 
 
+        #endregion
+
+        #region PalletInfoBySHNumber
+        public List<cstPalletInfo> GetPalletInfoBySHNumber(String SHnumber)
+        {
+           List<cstPalletInfo> _lspallet = new List<cstPalletInfo>();
+
+           //cstPalletInfo palletInfo = new cstPalletInfo();
+            try
+            {
+
+
+                var pallet = entx3v6.ExecuteStoreQuery<cstPalletInfo>(@"select p.PalletNumber,p.PrintStatus from palletinfo p join
+                                                                PalletDetail pd on p.PalletID = pd.palletID 
+                                                                where ShipmentNumber='" + SHnumber + "'group by p.PalletNumber,p.PrintStatus;").ToList();
+
+                               
+                foreach (var item in pallet)
+                {
+                    cstPalletInfo _palletInfo = new cstPalletInfo();
+                    _palletInfo.PrintStatus = item.PrintStatus;
+                    _palletInfo.PalletNumber = item.PalletNumber;
+                    //_lspallet
+                    _lspallet.Add(_palletInfo);
+                }
+              
+            }
+            catch (Exception)
+            {
+            }
+            return _lspallet;
+        }
         #endregion
 
     }

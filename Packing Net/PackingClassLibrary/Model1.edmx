@@ -564,6 +564,7 @@
           <Property Name="PalletHeight" Type="float" />
           <Property Name="PalletWidth" Type="float" />
           <Property Name="palletCreatedTime" Type="datetime" />
+          <Property Name="PrintStatus" Type="int" />
           <Property Name="RowID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PalletNumber" Type="varchar" StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -2959,6 +2960,7 @@
           <Property Type="Int32" Name="RowID" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="PalletNumber" MaxLength="8000" FixedLength="false" Unicode="false" p1:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="PalletDetails" Relationship="x3v6Model1.FK_PalletDetail_PalletDetail" FromRole="PalletInfo" ToRole="PalletDetail" />
+          <Property Type="Int32" Name="PrintStatus" />
         </EntityType>
         <EntityType Name="ReturnedSKU_Reason_Points">
           <Key>
@@ -3858,6 +3860,7 @@
           <EntitySetMapping Name="PalletInfoes">
             <EntityTypeMapping TypeName="x3v6Model1.PalletInfo">
               <MappingFragment StoreEntitySet="PalletInfo">
+                <ScalarProperty Name="PrintStatus" ColumnName="PrintStatus" />
                 <ScalarProperty Name="PalletNumber" ColumnName="PalletNumber" />
                 <ScalarProperty Name="RowID" ColumnName="RowID" />
                 <ScalarProperty Name="palletCreatedTime" ColumnName="palletCreatedTime" />

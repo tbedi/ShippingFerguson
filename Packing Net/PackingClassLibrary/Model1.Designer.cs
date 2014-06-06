@@ -6723,6 +6723,30 @@ namespace PackingClassLibrary
         private global::System.String _PalletNumber;
         partial void OnPalletNumberChanging(global::System.String value);
         partial void OnPalletNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PrintStatus
+        {
+            get
+            {
+                return _PrintStatus;
+            }
+            set
+            {
+                OnPrintStatusChanging(value);
+                ReportPropertyChanging("PrintStatus");
+                _PrintStatus = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrintStatus");
+                OnPrintStatusChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PrintStatus;
+        partial void OnPrintStatusChanging(Nullable<global::System.Int32> value);
+        partial void OnPrintStatusChanged();
 
         #endregion
 

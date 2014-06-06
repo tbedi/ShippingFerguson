@@ -170,5 +170,11 @@ namespace Packing_Net.Pages
             _role.Show();
             this.Close();
         }
+
+        private void btnPalletLabel_Click_1(object sender, RoutedEventArgs e)
+        {
+            PackingNet.Pages.wndPalletPrintStatus _pallete = new PackingNet.Pages.wndPalletPrintStatus();
+            _pallete.Show();
+        }
     }
 }

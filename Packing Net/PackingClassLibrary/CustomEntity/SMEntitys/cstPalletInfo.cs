@@ -12,6 +12,7 @@ namespace PackingClassLibrary.CustomEntity.SMEntitys
         public Double PalletWeight { get; set; }
         public Double PalletHeight { get; set; }
         public Double PalletWidth { get; set; }
+        public int? PrintStatus { get; set; }
         public DateTime palletCreatedTime { get; set; }
         public int RowID { get; set; }
         public string PalletNumber { get; set; }

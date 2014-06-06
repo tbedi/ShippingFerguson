@@ -1175,6 +1175,13 @@ namespace PackingClassLibrary
             return _box.SavePalletDetailInfo(lspalletDetailInfo);
         }
 
+        public List<cstPalletInfo> GetPalletInfoBySHNumber(String SHNUmber)
+        {
+            cmdPallet _Pallet=new cmdPallet();
+            return _Pallet.GetPalletInfoBySHNumber(SHNUmber);
+        }
+
+
         /// <summary>
         /// get all table of Box Package.
         /// </summary>

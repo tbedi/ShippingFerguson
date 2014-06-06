@@ -112,7 +112,6 @@ namespace PackingNet.Pages
                     //    Global.counter = Global.counter + 1;
                     //}
 
-
                     //SavePrinted(txtBoxNumberScanned.Text);
 
                     btnAddNewPallet.Visibility = Visibility.Visible;

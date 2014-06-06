@@ -95,7 +95,7 @@
         					Content="Pallet Label Print" HorizontalAlignment="Left" VerticalAlignment="Top"
         					Width="128" Height="42" Background="#FF535353" Foreground="White"
         					BorderBrush="{x:Null}" FontSize="15" Canvas.Left="56" Canvas.Top="316"
-        					x:Name="btnPalletLabel" />
+        					x:Name="btnPalletLabel" Click="btnPalletLabel_Click_1" />
 
 
 
