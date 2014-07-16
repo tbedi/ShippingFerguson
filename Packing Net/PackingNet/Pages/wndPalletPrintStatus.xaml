@@ -15,7 +15,7 @@
                                     FontSize="17" Background="#FFFBFBFB"
                                    SelectionUnit="Cell" BorderThickness="1" 
                                    Cursor="Hand"   
-                                   BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="552" Width="1280" Canvas.Top="208"  >
+                                   BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="541" Width="1280" Canvas.Top="219"  >
                         <DataGrid.Resources>
                             <Style x:Key="ErrorStyle" TargetType="{x:Type TextBox}">
                                 <Setter Property="Padding" Value="-2"/>
@@ -74,18 +74,24 @@
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
                     </DataGrid>
-                    <TextBox Name="txtBoxNumberScanned" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" Text="Click here and scan Pallet Number" TextWrapping="Wrap" Width="438" Canvas.Top="150" KeyDown="txtBoxNumberScanned_KeyDown" IsEnabled="True" GotFocus="txtBoxNumberScanned_GotFocus"/>
+                    <TextBox Name="txtBoxNumberScanned" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" Text="Click here and scan Pallet Number" TextWrapping="Wrap" Width="438" Canvas.Top="164" KeyDown="txtBoxNumberScanned_KeyDown" IsEnabled="True" GotFocus="txtBoxNumberScanned_GotFocus"/>
 
-                    <TextBox Name="txtSHNumber" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" TextWrapping="Wrap" Width="438" Canvas.Top="100"  IsEnabled="True" KeyDown="txtSHNumber_KeyDown_1" />
+                    <TextBox Name="txtSHNumber" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" TextWrapping="Wrap" Width="438" Canvas.Top="63"  IsEnabled="True" KeyDown="txtSHNumber_KeyDown_1" />
 
-                    <TextBlock Canvas.Left="172" FontSize="25" TextWrapping="Wrap" Text="Scanned Pallet Number :" Canvas.Top="152"/>
-                    <TextBlock Canvas.Left="300" FontSize="25" TextWrapping="Wrap" Text="SH Number :" Canvas.Top="99"/>
-                    
-                    <Button x:Name="btnAddNewBox" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Height="55" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1097" Canvas.Top="88" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+                    <TextBox Name="txtBOLNumber" Style="{StaticResource StyleInputTextBox }" Height="42" Canvas.Left="457" TextWrapping="Wrap" Width="438" Canvas.Top="114"  />
 
-                  
+                    <TextBlock Canvas.Left="172" FontSize="25" TextWrapping="Wrap" Text="Scanned Pallet Number :" Canvas.Top="167"/>
+                    <TextBlock Canvas.Left="300" FontSize="25" TextWrapping="Wrap" Text="SH Number :" Canvas.Top="64"/>
 
-                    <TextBlock Canvas.Left="459" FontSize="35" FontWeight="Bold" TextWrapping="Wrap" Text="Pallet Label Print" Canvas.Top="29"/>
+                    <TextBlock Canvas.Left="286" FontSize="25" TextWrapping="Wrap" Text="BOL Number :" Canvas.Top="114"/>
+
+                    <Button x:Name="btnAddNewBox" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Height="55" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1097" Canvas.Top="64" OpacityMask="#FFB45959" Click="btnAddNewBox_Click" />
+
+                    <Button x:Name="btnPrint" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Print" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Height="55" Background="#FF535353" Foreground="White" BorderBrush="{x:Null}" FontSize="25" Canvas.Left="1097" Canvas.Top="144" OpacityMask="#FFB45959" Click="btnPrint_Click_1"/>
+
+
+
+                    <TextBlock Canvas.Left="459" FontSize="35" FontWeight="Bold" TextWrapping="Wrap" Text="Pallet Label Print" Canvas.Top="11"/>
                     <TextBlock Canvas.Left="14" FontSize="25" TextWrapping="Wrap" Text="Mark for WH :" Canvas.Top="93" Visibility="Hidden"/>
                    
                 </Canvas>

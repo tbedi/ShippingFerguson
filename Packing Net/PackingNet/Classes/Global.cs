@@ -49,6 +49,7 @@ namespace Packing_Net.Classes
 
         public static Guid PalletDetailID;
 
+        public static String ShipmentNumberforferguson;
 
         public static string ShippingNumber;
         public static int primaryKey;

@@ -1,23 +1,27 @@
 ﻿<Window x:Class="PackingNet.Pages.wndPalletInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="wndPalletInfo" Height="6.0in" Width="3.95in">
+        Title="wndPalletInfo" Height="6.0in" Width="4.0in" Loaded="Window_Loaded_1">
     <Grid>
-        <Border Background="White" BorderBrush="Black" BorderThickness="1" Margin="4">
+        <Border Background="White" BorderBrush="Black" BorderThickness="2" Margin="4">
             <Canvas>
-                <Label Content="From :" Canvas.Top="5" Canvas.Left="12" FontSize="15" FontWeight="Bold"/>
-                <Label Content="To :" Canvas.Top="100" Canvas.Left="15" FontSize="15" FontWeight="Bold"/>
-                <Label Canvas.Top="94" Canvas.Left="56" Width="274" Height="85">
-                    <Label.Content>
-                        <AccessText TextWrapping="Wrap" Text="Ferguson Enterprices, Inc. 620 Fairgrounds Road  Front Royal, VA 22630" FontSize="20"  Height="75" Width="264"/>
-                    </Label.Content>
-                </Label>
-                <Label Content="CARRIER :" Canvas.Top="235" FontSize="15" FontWeight="Bold"/>
+                <Label Content="From :" Canvas.Top="1" Canvas.Left="3" FontSize="16" FontWeight="Bold"/>
 
-                <Label Content="PO Number(s) :" Canvas.Top="320" FontSize="15" FontWeight="Bold" Canvas.Left="6"/>
+                <TextBlock TextWrapping="Wrap" Canvas.Top="7" Canvas.Left="68"  x:Name="lblFromAddress" Width="279" Height="82" FontSize="15"  />
+
+                <TextBlock TextWrapping="Wrap" Canvas.Top="105" Canvas.Left="48"  x:Name="lblToAddress" Width="295" Height="79" FontSize="15"  />
+
+                <TextBlock TextWrapping="Wrap" Canvas.Top="266" Canvas.Left="29"  x:Name="lblCarrier" Width="136" Height="45" FontSize="15"  />
+
+                <TextBlock TextWrapping="Wrap" Canvas.Top="350" Canvas.Left="68"  x:Name="lblPonumber" Width="281" Height="59" FontSize="15"  />
+
+                <Label Content="To :" Canvas.Top="95" Canvas.Left="8" FontSize="16" FontWeight="Bold"/>
+                <Label Content="CARRIER :" Canvas.Top="235" FontSize="16" FontWeight="Bold"/>
+
+                <Label Content="PO Number(s) :" Canvas.Top="320" FontSize="16" FontWeight="Bold" Canvas.Left="6"/>
 
 
-                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="94" Width="355" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
+                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="94" Width="347" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="-1"/>
@@ -28,7 +32,7 @@
                     </Rectangle.RenderTransform>
                 </Rectangle>
 
-                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="234" Width="355" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
+                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="234" Width="347" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="-1"/>
@@ -39,7 +43,7 @@
                     </Rectangle.RenderTransform>
                 </Rectangle>
 
-                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="314" Width="355" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
+                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="314" Width="347" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="-1"/>
@@ -50,7 +54,7 @@
                     </Rectangle.RenderTransform>
                 </Rectangle>
 
-                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="420" Width="355" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
+                <Rectangle Height="1"  Stroke="#FF000000" StrokeThickness="1" Canvas.Top="416" Width="347" RenderTransformOrigin="0.5,0.5" Canvas.Left="2">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="-1"/>

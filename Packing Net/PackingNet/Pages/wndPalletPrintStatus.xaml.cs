@@ -1,4 +1,5 @@
-﻿using PackingClassLibrary;
+﻿using Packing_Net.Classes;
+using PackingClassLibrary;
 using PackingClassLibrary.CustomEntity.SMEntitys;
 using System;
 using System.Collections;
@@ -69,6 +70,9 @@ namespace PackingNet.Pages
                List<cstPalletInfo> _lspallet = new List<cstPalletInfo>();
                 _lspallet=_Contro.GetPalletInfoBySHNumber(txtSHNumber.Text);
                 grdContent.ItemsSource = _lspallet;
+
+                Global.ShipmentNumberforferguson = txtSHNumber.Text;
+
             }
         }
 
@@ -81,6 +85,12 @@ namespace PackingNet.Pages
                 var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
                 if (null != row) yield return row;
             }
+        }
+
+        private void btnPrint_Click_1(object sender, RoutedEventArgs e)
+        {
+            wndPalletInfo pall = new wndPalletInfo();
+            pall.ShowDialog();
         }
     }
 }
